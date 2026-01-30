@@ -1,4 +1,4 @@
-package com.example.toychat.user.Entity;
+package com.example.toychat.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

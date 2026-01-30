@@ -1,6 +1,6 @@
 package com.example.toychat.user.security;
 
-import com.example.toychat.user.Entity.User;
+import com.example.toychat.user.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

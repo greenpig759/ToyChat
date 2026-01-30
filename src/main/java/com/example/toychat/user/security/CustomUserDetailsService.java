@@ -1,6 +1,6 @@
 package com.example.toychat.user.security;
 
-import com.example.toychat.user.Entity.User;
+import com.example.toychat.user.entity.User;
 import com.example.toychat.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;

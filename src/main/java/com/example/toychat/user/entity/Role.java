@@ -1,4 +1,4 @@
-package com.example.toychat.user.Entity;
+package com.example.toychat.user.entity;
 
 public enum Role {
     ROLE_USER,

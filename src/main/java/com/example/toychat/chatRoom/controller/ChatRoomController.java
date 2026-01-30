@@ -3,7 +3,6 @@ package com.example.toychat.chatRoom.controller;
 import com.example.toychat.chatRoom.dto.ChatRoomDTO;
 import com.example.toychat.chatRoom.service.ChatService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/chat")
-public class ChatRoomRepository {
+public class ChatRoomController {
     private final ChatService chatService;
 
     // 이메일 꺼내기
@@ -23,7 +22,7 @@ public class ChatRoomRepository {
 
     // 방 생성
     @PostMapping("/rooms")
-    public ResponseEntity<ChatRoomDTO> createChatRoom(@RequestParam String name){
+    public ResponseEntity<ChatRoomDTO> createChatRoom(@RequestParam String name){ // Body가 아니므로 주소창에 보임
         return ResponseEntity.ok(chatService.createChatRoom(name, getMyEmail()));
     }
 

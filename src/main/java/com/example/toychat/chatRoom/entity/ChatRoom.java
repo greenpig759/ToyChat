@@ -1,4 +1,4 @@
-package com.example.toychat.chatRoom;
+package com.example.toychat.chatRoom.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;

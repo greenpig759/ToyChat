@@ -15,6 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -33,8 +38,12 @@ public class SecurityConfig {
 
     // 시큐리티 설정
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
         http
+                // CORS 설정 연결
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
+
                 // JWT 방식이므로 CSRF 해제
                 .csrf(AbstractHttpConfigurer::disable)
 
@@ -62,7 +71,33 @@ public class SecurityConfig {
                 // UsernamePasswordAuthenticationFilter 앞에 JwtAuthenticationFilter를 등록
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
-
         return http.build();
+    }
+
+
+    /*
+    Spring Security한테 주는 출입 명부의 역할
+    */
+    // CORS 설정 정의
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+
+        // 프론트엔드 주소 허용(누가 들어올 수 있는가)
+        config.setAllowedOrigins(List.of(("http://localhost:5500")));
+
+        // GET, POST, PUT, DELETE 다 허용(어떠한 행동을 할 수 있는가)
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+
+        // 헤더 전부 허용
+        config.setAllowedHeaders(List.of("*"));
+
+        // 쿠키, 인증 정보 포함 허용
+        config.setAllowCredentials(true);
+
+        // 모든 경로에 적용
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 }

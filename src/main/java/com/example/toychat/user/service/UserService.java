@@ -1,6 +1,6 @@
 package com.example.toychat.user.service;
 
-import com.example.toychat.user.Entity.User;
+import com.example.toychat.user.entity.User;
 import com.example.toychat.user.dto.LoginRequest;
 import com.example.toychat.user.dto.SignupRequest;
 import com.example.toychat.user.jwt.Entity.RefreshToken;

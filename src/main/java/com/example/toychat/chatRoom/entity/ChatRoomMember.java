@@ -1,4 +1,4 @@
-package com.example.toychat.chatRoom;
+package com.example.toychat.chatRoom.entity;
 
 
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ public class ChatRoomMember {
     private Long id;
 
     @ManyToOne // 여러명의 멤버가 하나의 채팅방에 소속
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id") // DB 테이블에 만들어질 외래키
     private ChatRoom chatRoom;
 
     private String email;

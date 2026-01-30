@@ -1,7 +1,7 @@
 package com.example.toychat.user.dto;
 
-import com.example.toychat.user.Entity.Role;
-import com.example.toychat.user.Entity.User;
+import com.example.toychat.user.entity.Role;
+import com.example.toychat.user.entity.User;
 
 
 public record SignupRequest(
